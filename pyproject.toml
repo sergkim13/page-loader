@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Page-loader CLI"
 authors = ["Sergey Kim <<sergkim7@gmail.com>>"]
 readme = "README.md"
-packages = [{include = "hexlet_code"}]
+packages = [{include = "page_loader}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
