@@ -1,6 +1,8 @@
-import os, re
+import os
+import re
 
-def download(url, dir=os.getcwd()):  
+
+def download(url, dir=os.getcwd()):
     pass
 
 
