@@ -4,6 +4,14 @@ import re
 
 
 def download(url, dir=os.getcwd()):
+    '''
+    Функция скачивает страницу и сохраняет ее содержимое
+    в файл в указанной директории (по умолчанию - текущая директория).
+    Имя файла генерируется по принципу: 
+    1) Берется адрес без схемы и расширения, если оно есть.
+    2) Все символы, кроме букв и цифр, заменяются на дефис -.
+    3) В конце ставится .html. 
+    '''
     page = requests.get(url)
     path_to_file = os.path.join(dir, get_file_name(url))
     with open(path_to_file, 'w') as file:
@@ -12,7 +20,7 @@ def download(url, dir=os.getcwd()):
 
 
 def get_file_name(url):
+    url, _ = os.path.splitext(url)
     _, address = url.split('//')
-    file_ext = '.html'
-    name = re.sub(r'\W', '-', address) + file_ext
+    name = re.sub(r'\W', '-', address) + '.html'
     return name
