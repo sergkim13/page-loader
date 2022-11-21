@@ -13,5 +13,8 @@ force-reinstall:
 test:
 	poetry run pytest
 
+test-cov:
+	poetry run pytest --cov-report term-missing --cov=page_loader --cov-report xml
+
 lint:
 	poetry run flake8 page_loader
