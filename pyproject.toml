@@ -10,6 +10,8 @@ packages = [{include = "page_loader"}]
 python = "^3.10"
 requests = "^2.28.1"
 
+[tool.poetry.scripts]
+page-loader = "page_loader.scripts.page_loader_script:main"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^5.0.4"
