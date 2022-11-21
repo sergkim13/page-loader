@@ -4,7 +4,7 @@ from page_loader.args_parser import get_args
 
 
 def main():
-    args = get_args
+    args = get_args()
     print(download(args.url, args.output))
 
 
