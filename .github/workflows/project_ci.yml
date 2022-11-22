@@ -11,7 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
-      - run: curl -sSL https://install.python-poetry.org | python3 -
+      - run: export POETRY_HOME=/opt/poetry
+      - run: python3 install-poetry.py --version 1.2.0
+      - run: $POETRY_HOME/bin/poetry --version
       - run: make install
       - name: run lint
         run: make lint
