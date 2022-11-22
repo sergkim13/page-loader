@@ -12,6 +12,9 @@ def download(url, dir=os.getcwd()):
     2) Все символы, кроме букв и цифр, заменяются на дефис -.
     3) В конце ставится .html.
     '''
+    if not os.path.exists(dir):
+        return 'Указанная директория не найдена.'
+        
     page = requests.get(url)
     path_to_file = os.path.join(dir, get_file_name(url))
     with open(path_to_file, 'w') as file:
