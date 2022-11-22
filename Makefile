@@ -13,7 +13,7 @@ force-reinstall:
 test:
 	poetry run pytest
 
-test-cov:
+test-coverage:
 	poetry run pytest --cov-report term-missing --cov=page_loader --cov-report xml
 
 lint:
