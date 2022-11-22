@@ -13,7 +13,12 @@ def test_download():
     with requests_mock.Mocker() as m:
         m.get(url, text=mock_text)
         with tempfile.TemporaryDirectory() as temp_dir:
-            result_page_path = download(url, dir=temp_dir)
+            result_page_path = download(url, temp_dir)
             result_page = open(result_page_path).read()
             expected_html_page = open(expected_html_path).read()
             assert result_page == expected_html_page
+
+
+def test_download_to_not_exist_dir():
+    not_exist_dir = 'not_exist_dir/'
+    assert download(url, not_exist_dir) == 'Указанная директория не найдена.'
