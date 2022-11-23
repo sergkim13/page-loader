@@ -16,14 +16,18 @@ def download(url, dir=os.getcwd()):
         return 'Указанная директория не найдена.'
 
     page = requests.get(url)
-    path_to_file = os.path.join(dir, get_file_name(url))
+    path_to_file = os.path.join(dir, generate_file_name(url))
     with open(path_to_file, 'w') as file:
         file.write(page.text)
     return path_to_file
 
 
-def get_file_name(url):
+def generate_file_name(url):
     url, _ = os.path.splitext(url)
     _, address = url.split('//')
     name = re.sub(r'\W', '-', address) + '.html'
     return name
+
+
+def get_images():
+    pass
