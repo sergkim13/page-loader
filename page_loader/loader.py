@@ -29,14 +29,10 @@ def download(url, dir=os.getcwd()):
     return saved_page_path
 
 
-def get_saved_page_path(url, dir):
-    return os.path.join(dir, generate_page_file_name(url))
-
-
 def rebuild_page_with_saved_images(soup, url, saved_images_path):
     domain = get_domain(url)
     image_links = get_images_in_domain(soup, domain)
-    saved_image_links = list(map(save_image(lambda link: save_image(link, saved_images_path), image_links)))
+    saved_image_links = list(map(lambda link: save_image(link, saved_images_path), image_links))
     image_links_iter = iter(saved_image_links)
     for img in image_links:
         img['src'] = next(image_links_iter)
@@ -46,9 +42,17 @@ def rebuild_page_with_saved_images(soup, url, saved_images_path):
 def get_images_in_domain(soup, domain):
     return soup.find_all('img', src=re.compile(domain))  # TODO скачивать только jpg и png
 
+## Объединить эти три функции:
+def get_saved_page_path(url, dir):
+    return os.path.join(dir, generate_page_file_name(url))
+
 
 def get_saved_images_path(url, dir):
     return os.path.join(dir, generate_saved_images_folder_name(url))
+
+
+def get_image_path(image_name, saved_images_path):
+    return os.path.join(saved_images_path, image_name)
 
 
 def generate_page_file_name(url):
@@ -76,11 +80,6 @@ def save_image(url, saved_images_path):
 
 def get_image_name(url):
     pass
-
-
-def get_image_path(image_name, saved_images_path):
-    pass
-    
 
 
 def get_domain(url):
