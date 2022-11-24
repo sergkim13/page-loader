@@ -1,0 +1,5 @@
+ru-hexlet-io-assets-logo-ru-495f05850e0095ea722a2b583565d492719579c02b0ce61d924e4f895fabf781.svg,
+ru-hexlet-io-courses_files/ru-hexlet-io-assets-team-you-bc72575a0e6eb39de3e28e54a8df1138beaa57cd5300061ecb5c202773131f9e.jpg,
+ru-hexlet-io-courses_files/ru-hexlet-io-assets-at-a-laptop-8c6e59267f91a6bf13bae0e5c0f7e1f36accc440b8d760bca08ab244e2b8bdbf.png,
+ru-hexlet-io-courses_files/cdn2-hexlet-io-assets-flag-en-f0b48c6562bb27879fbd685ece0133271ea043384dd9793843c246f862ac7cc1.svg,
+ru-hexlet-io-courses_files/cdn2-hexlet-io-assets-flag-en-f0b48c6562bb27879fbd685ece0133271ea043384dd9793843c246f862ac7cc1.svg
