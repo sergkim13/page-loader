@@ -22,7 +22,7 @@ def download(url, dir=os.getcwd()):
     saved_images_path = get_saved_images_path(url, dir)
 
     soup = BeautifulSoup(page.text, 'html.parser')
-    page_with_saved_images = rebuild_page_with_saved_images(soup, saved_images_path)
+    page_with_saved_images = rebuild_page_with_saved_images(soup, url, saved_images_path)
         
     with open(saved_page_path, 'w') as file:
         file.write(page_with_saved_images)
@@ -36,7 +36,7 @@ def get_saved_page_path(url, dir):
 def rebuild_page_with_saved_images(soup, url, saved_images_path):
     domain = get_domain(url)
     image_links = get_images_in_domain(soup, domain)
-    saved_image_links = list(map(save_image, image_links))
+    saved_image_links = list(map(save_image(lambda link: save_image(link, saved_images_path), image_links)))
     image_links_iter = iter(saved_image_links)
     for img in image_links:
         img['src'] = next(image_links_iter)
