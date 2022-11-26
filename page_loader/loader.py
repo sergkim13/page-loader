@@ -2,7 +2,7 @@ import os
 import requests
 import re
 from bs4 import BeautifulSoup
-from urllib.parse import urlparse, urlunparse
+from urllib.parse import urlparse
 
 
 def download(url, dir=os.getcwd()):
@@ -18,15 +18,16 @@ def download(url, dir=os.getcwd()):
         return 'Указанная директория не найдена.'
 
     page = requests.get(url)
-    saved_page_path = get_saved_page_path(url, dir) 
-    saved_images_path = get_saved_images_path(url, dir)
-    page_with_saved_images = rebuild_page_with_saved_images(page, url, saved_images_path)
+    saved_page_path = get_saved_page_path(url, dir)
+    local_images_path = get_local_images_path(url, dir)
+    page_with_local_images = replace_images_with_locals(
+        page, url, local_images_path)
     with open(saved_page_path, 'w') as file:
-        file.write(page_with_saved_images)
+        file.write(page_with_local_images)
     return saved_page_path
 
 
-def rebuild_page_with_saved_images(page, url, saved_images_path):
+def replace_images_with_locals(page, url, local_images_path):
     soup = BeautifulSoup(page.text, 'html.parser')
     page_domain = get_domain(url)
     images = soup.find_all('img')
@@ -34,20 +35,26 @@ def rebuild_page_with_saved_images(page, url, saved_images_path):
         image_url = normalize(image['src'], url)
         image_domain = get_domain(image_url)
         if page_domain in image_domain:
-            image_local_path = download_image(image_url, saved_images_path)
+            image_local_path = download_image(image_url, local_images_path)
             image['src'] = image_local_path
     return soup.prettify()
 
 
+def download_image(url, local_images_path):
+    image = requests.get(url)
+    image_path = get_image_path(url, local_images_path)
+    with open(image_path, 'wb') as f:
+        f.write(image.content)
+    return image_path
+
+
 def normalize(img_url, page_url):
     img_url_domain = get_domain(img_url)
-    
     if not img_url_domain:
         page_url_chunks = urlparse(page_url)
         scheme = page_url_chunks.scheme
         netloc = page_url_chunks.netloc
         img_url = f'{scheme}//{netloc}/{img_url}'
-    
     return img_url
 
 
@@ -57,24 +64,16 @@ def get_saved_page_path(url, dir):
     return saved_page_path
 
 
-def get_saved_images_path(url, dir):
+def get_local_images_path(url, dir):
     images_folder_name = generate_name(url) + '_files'
-    saved_images_path = os.path.join(dir, images_folder_name)
-    os.mkdir(saved_images_path)
-    return saved_images_path
+    local_images_path = os.path.join(dir, images_folder_name)
+    os.mkdir(local_images_path)
+    return local_images_path
 
 
 def get_image_path(url, dir):
     image_name = generate_name(url)
     image_path = os.path.join(dir, image_name)
-    return image_path
-
-
-def download_image(url, saved_images_path):
-    image = requests.get(url)
-    image_path = get_image_path(url, saved_images_path)
-    with open(image_path, 'wb') as f:
-        f.write(image.content)
     return image_path
 
 
@@ -99,5 +98,3 @@ def generate_name(url):
         _, url = url.split('//')
     name = re.sub(r'[\W_]', '-', url) + ext
     return name
-
-# download('https://ru.hexlet.io/courses')
