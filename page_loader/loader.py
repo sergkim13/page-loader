@@ -20,62 +20,78 @@ def download(url, dir=os.getcwd()):
     page = requests.get(url)
     saved_page_path = get_saved_page_path(url, dir) 
     saved_images_path = get_saved_images_path(url, dir)
-
-    soup = BeautifulSoup(page.text, 'html.parser')
-    page_with_saved_images = rebuild_page_with_saved_images(soup, url, saved_images_path)
-        
+    page_with_saved_images = rebuild_page_with_saved_images(page, url, saved_images_path)
     with open(saved_page_path, 'w') as file:
         file.write(page_with_saved_images)
     return saved_page_path
 
 
-def rebuild_page_with_saved_images(soup, url, saved_images_path):
-    domain = get_domain(url)
-    image_links = get_images_in_domain(soup, domain)
-    saved_image_links = list(map(lambda link: download_image(link, saved_images_path), image_links))
-    image_links_iter = iter(saved_image_links)
-    for img in image_links:
-        img['src'] = next(image_links_iter)
+def rebuild_page_with_saved_images(page, url, saved_images_path):
+    soup = BeautifulSoup(page.text, 'html.parser')
+    page_domain = get_domain(url)
+    images = soup.find_all('img')
+    for image in images:
+        image_url = normalize(image['src'], url)
+        image_domain = get_domain(image_url)
+        if page_domain in image_domain:
+            image_local_path = download_image(image_url, saved_images_path)
+            image['src'] = image_local_path
     return soup.prettify()
 
 
-def get_images_in_domain(soup, domain):
-    return soup.find_all('img', src=re.compile(domain))  # TODO скачивать только jpg и png
+def normalize(img_url, page_url):
+    img_url_domain = get_domain(img_url)
+    
+    if not img_url_domain:
+        page_url_chunks = urlparse(page_url)
+        scheme = page_url_chunks.scheme
+        netloc = page_url_chunks.netloc
+        img_url = f'{scheme}//{netloc}/{img_url}'
+    
+    return img_url
 
 
-## Объединить эти три функции:
 def get_saved_page_path(url, dir):
     page_name = generate_name(url) + '.html'
-    return os.path.join(dir, page_name)
+    saved_page_path = os.path.join(dir, page_name)
+    return saved_page_path
 
 
 def get_saved_images_path(url, dir):
     images_folder_name = generate_name(url) + '_files'
-    return os.path.join(dir, images_folder_name)
+    saved_images_path = os.path.join(dir, images_folder_name)
+    os.mkdir(saved_images_path)
+    return saved_images_path
 
 
 def get_image_path(url, dir):
     image_name = generate_name(url)
-    return os.path.join(dir, image_name)
+    image_path = os.path.join(dir, image_name)
+    return image_path
 
 
 def download_image(url, saved_images_path):
-    image = requests.get(url)   # TODO сгенерировать имя изображения, сохранять функцию, и вернуть полный путь до изображения
+    image = requests.get(url)
     image_path = get_image_path(url, saved_images_path)
     with open(image_path, 'wb') as f:
         f.write(image.content)
     return image_path
- 
+
 
 def get_domain(url):
     netloc = urlparse(url).netloc
-    netloc_chunks = netloc.split('.')
-    domain = f'{netloc_chunks[-2]}.{netloc_chunks[-1]}'
+    if netloc:
+        netloc_chunks = netloc.split('.')
+        domain_1lvl = netloc_chunks[-1]
+        domain_2lvl = netloc_chunks[-2]
+        domain = f'{domain_2lvl}.{domain_1lvl}'
+    else:
+        domain = ''
     return domain
 
 
 def generate_name(url):
-    img_ext = {'png', 'jpg'}
+    img_ext = {'.png', '.jpg', '.svg'}
     url, ext = os.path.splitext(url)
     if ext not in img_ext:
         ext = ''
@@ -83,3 +99,5 @@ def generate_name(url):
         _, url = url.split('//')
     name = re.sub(r'[\W_]', '-', url) + ext
     return name
+
+# download('https://ru.hexlet.io/courses')
