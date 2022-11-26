@@ -187,7 +187,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class='container'>
 <header class='navbar navbar-light navbar-expand-lg border-bottom align-items-center py-lg-3 mb-4'>
 <a aria-hidden='true' class='navbar-brand link-dark pt-lg-0 pb-lg-2' href='/my'>
-<img width="100" height="20" alt="Хекслет" src="ru-hexlet-io-courses_files/ru-hexlet-io-assets-logo-ru-495f05850e0095ea722a2b583565d492719579c02b0ce61d924e4f895fabf781.svg" loading="lazy" />
+<img width="100" height="20" alt="Хекслет" src="https://cdn2.hexlet.io/assets/logo_ru-495f05850e0095ea722a2b583565d492719579c02b0ce61d924e4f895fabf781.svg" loading="lazy" />
 </a>
 <button aria-controls='navbar-responsive' aria-expanded='false' aria-label='Меню' class='navbar-toggler border-0' data-bs-target='#navbar-responsive' data-bs-toggle='collapse'>
 <span class='navbar-toggler-icon'></span>
@@ -221,7 +221,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class='dropdown-menu dropdown-menu-end'>
 <div class='dropdown-header d-flex align-items-center position-relative'>
 <div class='flex-shrink-0 me-2' style='width: 50px; height: 50px;'>
-<picture><source type="image/webp" srcset="https://cdn2.hexlet.io/assets/team/you-bc72575a0e6eb39de3e28e54a8df1138beaa57cd5300061ecb5c202773131f9e.jpg"><source type="image/png" srcset="https://cdn2.hexlet.io/assets/team/you-bc72575a0e6eb39de3e28e54a8df1138beaa57cd5300061ecb5c202773131f9e.jpg"><img width="50" height="50" class="rounded-circle" alt="Аватар пользователя sergkim" src="ru-hexlet-io-courses_files/ru-hexlet-io-assets-team-you-bc72575a0e6eb39de3e28e54a8df1138beaa57cd5300061ecb5c202773131f9e.jpg" loading="lazy" /></picture>
+<picture><source type="image/webp" srcset="https://cdn2.hexlet.io/assets/team/you-bc72575a0e6eb39de3e28e54a8df1138beaa57cd5300061ecb5c202773131f9e.jpg"><source type="image/png" srcset="https://cdn2.hexlet.io/assets/team/you-bc72575a0e6eb39de3e28e54a8df1138beaa57cd5300061ecb5c202773131f9e.jpg"><img width="50" height="50" class="rounded-circle" alt="Аватар пользователя sergkim" src="https://cdn2.hexlet.io/assets/team/you-bc72575a0e6eb39de3e28e54a8df1138beaa57cd5300061ecb5c202773131f9e.jpg" loading="lazy" /></picture>
 </div>
 <div>
 <a title="Мой профиль" class="h6 fw-bold text-dark text-decoration-none mb-0 stretched-link" href="/u/sergkim">sergkim</a>
@@ -264,7 +264,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <a class="btn btn-primary px-4" target="_blank" rel="noopener" href="/programs">Выбрать профессию</a>
 </div>
 <div class='col-auto col-lg-4'>
-<img class="img-fluid d-none d-lg-block" alt="Как учиться на Хекслете" src="ru-hexlet-io-courses_files/ru-hexlet-io-assets-at-a-laptop-8c6e59267f91a6bf13bae0e5c0f7e1f36accc440b8d760bca08ab244e2b8bdbf.png" loading="lazy" />
+<img class="img-fluid d-none d-lg-block" alt="Как учиться на Хекслете" src="https://cdn2.hexlet.io/assets/at_a_laptop-8c6e59267f91a6bf13bae0e5c0f7e1f36accc440b8d760bca08ab244e2b8bdbf.png" loading="lazy" />
 </div>
 </div>
 
@@ -2876,11 +2876,11 @@ SQL
 </button>
 <ul class='dropdown-menu py-2'>
 <li>
-<a class="dropdown-item" href="/locale/switch?new_locale=en"><img width="22" alt="Переключить язык на en" class="my-auto me-1" src="ru-hexlet-io-courses_files/cdn2-hexlet-io-assets-flag-en-f0b48c6562bb27879fbd685ece0133271ea043384dd9793843c246f862ac7cc1.svg" loading="lazy" />
+<a class="dropdown-item" href="/locale/switch?new_locale=en"><img width="22" alt="Переключить язык на en" class="my-auto me-1" src="https://cdn2.hexlet.io/assets/flag-en-f0b48c6562bb27879fbd685ece0133271ea043384dd9793843c246f862ac7cc1.svg" loading="lazy" />
 <span class='my-auto text-muted'>English</span>
 </a></li>
 <li>
-<a class="dropdown-item bg-primary bg-opacity-10" href="/locale/switch?new_locale=ru"><img width="22" alt="Переключить язык на ru" class="my-auto me-1" src="ru-hexlet-io-courses_files/cdn2-hexlet-io-assets-flag-ru-593864ce87ae202b2c2e9393b2a6cf9384ac9cbb1c70632f4c6eeca34341483e.svg" loading="lazy" />
+<a class="dropdown-item bg-primary bg-opacity-10" href="/locale/switch?new_locale=ru"><img width="22" alt="Переключить язык на ru" class="my-auto me-1" src="https://cdn2.hexlet.io/assets/flag-ru-593864ce87ae202b2c2e9393b2a6cf9384ac9cbb1c70632f4c6eeca34341483e.svg" loading="lazy" />
 <span class='my-auto text-muted'>Русский</span>
 </a></li>
 </ul>
