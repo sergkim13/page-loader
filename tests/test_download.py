@@ -2,7 +2,6 @@ from page_loader import download
 from page_loader.loader import download_image
 import requests_mock
 import tempfile
-import os
 
 
 # Тестовые данные
@@ -50,11 +49,10 @@ def test_download():
         m.get(img5, content=mock_img5)
         with tempfile.TemporaryDirectory() as temp_dir:
             result_page_path = download(url, temp_dir)
-            result_html_files_path = os.path.join(
-                temp_dir, expected_html_files_dir)
+            # result_html_files_path = os.path.join(
+            #     temp_dir, expected_html_files_dir)
             result_page = open(result_page_path).read()
             assert result_page == expected_page
-            # assert os.path.exists(result_html_files_path)
             # assert os.listdir(result_html_files_path) == images_name_list
 
 
