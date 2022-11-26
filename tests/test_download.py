@@ -18,7 +18,7 @@ expected_page = open(path_to_expected_html_page).read()
 
 expected_html_files_dir = 'ru-hexlet-io-courses_files/'
 
-path_to_expected_images_names = 'tests/fixtures/expected_images_names.txt'
+path_to_expected_images_names = 'tests/fixtures/img_mocks/expected_images_names.txt'
 expected_images_names = open(path_to_expected_images_names)
 images_name_list = expected_images_names.read().split(',\n')
 
@@ -26,11 +26,11 @@ path_to_mock_page = 'tests/fixtures/mock_page_content.txt'
 mock_text = open(path_to_mock_page).read()
 
 
-path_to_mock_img1 = 'tests/fixtures/mock_img1_content.svg'
-path_to_mock_img2 = 'tests/fixtures/mock_img2_content.jpg'
-path_to_mock_img3 = 'tests/fixtures/mock_img3_content.png'
-path_to_mock_img4 = 'tests/fixtures/mock_img4_content.svg'
-path_to_mock_img5 = 'tests/fixtures/mock_img5_content.svg'
+path_to_mock_img1 = 'tests/fixtures/img_mocks/mock_img1_content.svg'
+path_to_mock_img2 = 'tests/fixtures/img_mocks/mock_img2_content.jpg'
+path_to_mock_img3 = 'tests/fixtures/img_mocks/mock_img3_content.png'
+path_to_mock_img4 = 'tests/fixtures/img_mocks/mock_img4_content.svg'
+path_to_mock_img5 = 'tests/fixtures/img_mocks/mock_img5_content.svg'
 mock_img1 = open(path_to_mock_img1, 'rb').read()
 mock_img2 = open(path_to_mock_img2, 'rb').read()
 mock_img3 = open(path_to_mock_img3, 'rb').read()

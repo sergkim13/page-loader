@@ -1,0 +1,13 @@
+[<script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/runtime-c4b43f470ed8aa7886d2fec2c7f972044ebbaa6c75aebf9585353af301f61c8c.js">
+</script>, <script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/sprockets-423c98b6a28c3fab45c96e660879310c4f39c8694f8c4763628f45148bb06d4d.js">
+</script>, <script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/routes-14b27842b52305fbfe18e2ec2da2f30795e6f06d7181203ea85aa2af5b47c7b5.js">
+</script>, <script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/vendors-99331910736b001606d2b79692ef453e468ff13dd6d7fa41022dd5bfd60be728.js">
+</script>, <script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/locales-8ed678fecbf69a8e53f0734ab339a0f857d23e32e19eb894fb621e5eb4f8ab51.js">
+</script>, <script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/i18n-f026cb38d688a88e7e3da93ae0f3a52073362dc8229e9709bbc99dac0a72ad3a.js">
+</script>, <script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/markdown-b4293e7c29c14595262a19f31f62181bb5805a8f7b0f045a291115f985b262e2.js">
+</script>, <script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/reactEssentials-d21445c3f0bfaf547466f80f5bb4e9ec6d8e8c5797756b67addd53f8725dcf98.js">
+</script>, <script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/reactRelated-69e822e0dfdc767dfe8885fd9fe990f7e3976b0f229f2f05f7932580893db0e4.js">
+</script>, <script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/application-14a5e7d2b1ecff7ca6473714b6451595a33d872f1c17bc1b159e546f09a0c106.js">
+</script>, <script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/bf_promo_banner-c973c1c9fec9bc51fd65442de9aa21e4ab32738bda309c63fdb4b1baf76960e6.js">
+</script>, <script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/notifications-3084db50a6641d548dfcf6e0e325750522d40958c5c9625b4acf1222e599ee36.js">
+</script>]

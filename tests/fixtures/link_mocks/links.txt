@@ -1,0 +1,6 @@
+[<link href="https://ru.hexlet.io/courses" rel="canonical"/>, 
+<link href="https://en.hexlet.io/courses" hreflang="en" rel="alternate"/>, 
+<link href="https://cdn2.hexlet.io/assets/hexlet_logo_wide-56fe12bf29287c1ac237ef1e5fa70e861e99a954af1f49504f654ae4990fa42b.png" rel="image_src"/>,
+<link href="https://cdn2.hexlet.io/assets/favicon-9213ff1fc34b4e2da96c3b3eb582b3d10180b250e993141d7928d6aa1f5647c1.ico" rel="icon" type="image/x-icon"/>, 
+<link href="https://cdn2.hexlet.io/assets/application-8dcc80087a1e4a2cb78752144707fc8b1bd5dede573dfe6174d69fcdf88eb50b.css" media="all" rel="stylesheet"/>, 
+<link href="https://ru.hexlet.io/lessons.rss" rel="alternate" title="RSS" type="application/rss+xml"/>]
