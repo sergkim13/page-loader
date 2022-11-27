@@ -45,11 +45,11 @@ def get_page_with_saved_files(url, dir, page):
 
 
 def make_files_path(dir, files_folder_name):
-    files_path = os.path.join(dir, files_folder_name)
+    files_path = generate_path(dir, files_folder_name)
     os.mkdir(files_path)
     return files_path
 
-# РЕфакторить 
+
 def download_image(image_url, files_folder_name, files_path):
     image = requests.get(image_url)
     image_name = generate_name(image_url)
@@ -80,8 +80,11 @@ def generate_name(url, ext=''):
     url, extension = os.path.splitext(url)
     if ext != '':
         extension = ext
-    if urlparse(url).scheme:
-        _, url = url.split('//')
+    url_parts = list(urlparse(url))
+    url_parts[0] = ''
+    url = urlunparse(url_parts)
+    if url.startswith('//'):
+        url = url[2:]
     name = re.sub(r'[\W_]', '-', url) + extension
     return name
 
