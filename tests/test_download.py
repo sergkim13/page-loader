@@ -1,5 +1,4 @@
 from page_loader import download
-from page_loader.loader import download_image
 import requests_mock
 import tempfile
 import os
@@ -7,11 +6,11 @@ import os
 
 # Тестовые данные
 url = 'https://ru.hexlet.io/courses'
-img1 = 'https://ru.hexlet.io/assets/logo_ru-495f05850e0095ea722a2b583565d492719579c02b0ce61d924e4f895fabf781.svg'  # noqa: E501
-img2 = 'https://ru.hexlet.io/assets/team/you-bc72575a0e6eb39de3e28e54a8df1138beaa57cd5300061ecb5c202773131f9e.jpg'  # noqa: E501
+img1 = 'https://ru.hexlet.io/assets/logo_ru-495f05850e0095ea722a2b583565d492719579c02b0ce61d924e4f895fabf781.svg'      # noqa: E501
+img2 = 'https://ru.hexlet.io/assets/team/you-bc72575a0e6eb39de3e28e54a8df1138beaa57cd5300061ecb5c202773131f9e.jpg'     # noqa: E501
 img3 = 'https://ru.hexlet.io/assets/at_a_laptop-8c6e59267f91a6bf13bae0e5c0f7e1f36accc440b8d760bca08ab244e2b8bdbf.png'  # noqa: E501
-img4 = 'https://en.hexlet.io/assets/flag-en-f0b48c6562bb27879fbd685ece0133271ea043384dd9793843c246f862ac7cc1.svg'  # noqa: E501
-img5 = 'https://cdn2.hexlet.io/assets/flag-ru-593864ce87ae202b2c2e9393b2a6cf9384ac9cbb1c70632f4c6eeca34341483e.svg'  # noqa: E501
+img4 = 'https://en.hexlet.io/assets/flag-en-f0b48c6562bb27879fbd685ece0133271ea043384dd9793843c246f862ac7cc1.svg'      # noqa: E501
+img5 = 'https://cdn2.hexlet.io/assets/flag-ru-593864ce87ae202b2c2e9393b2a6cf9384ac9cbb1c70632f4c6eeca34341483e.svg'    # noqa: E501
 
 
 path_to_expected_html_page = 'tests/fixtures/expected_page.html'
@@ -19,9 +18,9 @@ expected_page = open(path_to_expected_html_page).read()
 
 expected_html_files_dir = 'ru-hexlet-io-courses_files/'
 
-path_to_expected_images_names = 'tests/fixtures/img_mocks/expected_images_names.txt'
+path_to_expected_images_names = 'tests/fixtures/img_mocks/expected_images_names.txt'                                   # noqa: E501
 expected_images_names = open(path_to_expected_images_names)
-images_name_list = expected_images_names.read().split(',\n')
+images_name_list = set(expected_images_names.read().split(',\n'))
 
 path_to_mock_page = 'tests/fixtures/mock_page_content.txt'
 mock_text = open(path_to_mock_page).read()
@@ -54,7 +53,7 @@ def test_download():
                 temp_dir, expected_html_files_dir)
             result_page = open(result_page_path).read()
             assert result_page == expected_page
-            assert os.listdir(result_html_files_path) == images_name_list
+            assert set(os.listdir(result_html_files_path)) == images_name_list
 
 
 def test_download_to_not_exist_dir():
