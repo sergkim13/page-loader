@@ -2,7 +2,7 @@ import os
 import requests
 import re
 from bs4 import BeautifulSoup
-from urllib.parse import urlparse, urlunparse, urlsplit, urlunsplit, urljoin
+from urllib.parse import urlparse, urlunparse
 
 
 def download(url, dir=os.getcwd()):
@@ -38,7 +38,8 @@ def get_page_with_saved_files(url, dir, page):
         image_url = normalize(image['src'], url)
         image_domain = get_domain(image_url)
         if image_domain == page_domain:
-            image_relative_path = download_image(image_url, files_folder_name, files_path)
+            image_relative_path = download_image(
+                image_url, files_folder_name, files_path)
             image['src'] = image_relative_path
 
     return soup.prettify()
