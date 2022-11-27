@@ -196,7 +196,7 @@ window.gon={};gon.fired_events={};gon.is_bot=false;gon.applications={};gon.curre
   <div class="container">
    <header class="navbar navbar-light navbar-expand-lg border-bottom align-items-center py-lg-3 mb-4">
     <a aria-hidden="true" class="navbar-brand link-dark pt-lg-0 pb-lg-2" href="/my">
-     <img alt="Хекслет" height="20" loading="lazy" src="https://cdn2.hexlet.io/assets/logo_ru-495f05850e0095ea722a2b583565d492719579c02b0ce61d924e4f895fabf781.svg" width="100"/>
+     <img alt="Хекслет" height="20" loading="lazy" src="https://ru.hexlet.io/assets/logo_ru-495f05850e0095ea722a2b583565d492719579c02b0ce61d924e4f895fabf781.svg" width="100"/>
     </a>
     <button aria-controls="navbar-responsive" aria-expanded="false" aria-label="Меню" class="navbar-toggler border-0" data-bs-target="#navbar-responsive" data-bs-toggle="collapse">
      <span class="navbar-toggler-icon">
@@ -261,7 +261,7 @@ window.gon={};gon.fired_events={};gon.is_bot=false;gon.applications={};gon.curre
            <picture>
             <source srcset="https://cdn2.hexlet.io/assets/team/you-bc72575a0e6eb39de3e28e54a8df1138beaa57cd5300061ecb5c202773131f9e.jpg" type="image/webp"/>
             <source srcset="https://cdn2.hexlet.io/assets/team/you-bc72575a0e6eb39de3e28e54a8df1138beaa57cd5300061ecb5c202773131f9e.jpg" type="image/png"/>
-            <img alt="Аватар пользователя sergkim" class="rounded-circle" height="50" loading="lazy" src="https://cdn2.hexlet.io/assets/team/you-bc72575a0e6eb39de3e28e54a8df1138beaa57cd5300061ecb5c202773131f9e.jpg" width="50"/>
+            <img alt="Аватар пользователя sergkim" class="rounded-circle" height="50" loading="lazy" src="assets/team/you-bc72575a0e6eb39de3e28e54a8df1138beaa57cd5300061ecb5c202773131f9e.jpg" width="50"/>
            </picture>
           </div>
           <div>
@@ -336,7 +336,7 @@ window.gon={};gon.fired_events={};gon.is_bot=false;gon.applications={};gon.curre
       </a>
      </div>
      <div class="col-auto col-lg-4">
-      <img alt="Как учиться на Хекслете" class="img-fluid d-none d-lg-block" loading="lazy" src="https://cdn2.hexlet.io/assets/at_a_laptop-8c6e59267f91a6bf13bae0e5c0f7e1f36accc440b8d760bca08ab244e2b8bdbf.png"/>
+      <img alt="Как учиться на Хекслете" class="img-fluid d-none d-lg-block" loading="lazy" src="assets/at_a_laptop-8c6e59267f91a6bf13bae0e5c0f7e1f36accc440b8d760bca08ab244e2b8bdbf.png"/>
      </div>
     </div>
     <section class="pt-3">
@@ -3927,7 +3927,7 @@ window.gon={};gon.fired_events={};gon.is_bot=false;gon.applications={};gon.curre
        <ul class="dropdown-menu py-2">
         <li>
          <a class="dropdown-item" href="/locale/switch?new_locale=en">
-          <img alt="Переключить язык на en" class="my-auto me-1" loading="lazy" src="https://cdn2.hexlet.io/assets/flag-en-f0b48c6562bb27879fbd685ece0133271ea043384dd9793843c246f862ac7cc1.svg" width="22"/>
+          <img alt="Переключить язык на en" class="my-auto me-1" loading="lazy" src="https://en.hexlet.io/assets/flag-en-f0b48c6562bb27879fbd685ece0133271ea043384dd9793843c246f862ac7cc1.svg" width="22"/>
           <span class="my-auto text-muted">
            English
           </span>
