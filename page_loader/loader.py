@@ -2,7 +2,7 @@ import os
 import requests
 import re
 from bs4 import BeautifulSoup
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urlunparse, urlsplit, urlunsplit, urljoin
 
 
 def download(url, dir=os.getcwd()):
@@ -18,83 +18,73 @@ def download(url, dir=os.getcwd()):
         return 'Указанная директория не найдена.'
 
     page = requests.get(url)
-    saved_page_path = get_saved_page_path(url, dir)
-    local_images_path = get_local_images_path(url, dir)
-    page_with_local_images = replace_images_with_locals(
-        page, url, local_images_path)
-    with open(saved_page_path, 'w') as file:
-        file.write(page_with_local_images)
-    return saved_page_path
+    page_name = generate_name(url, ext='.html')
+    page_path = generate_path(dir, page_name)
+    page_with_saved_files = get_page_with_saved_files(url, dir, page)
+    with open(page_path, 'w') as file:
+        file.write(page_with_saved_files)
+    return page_path
 
 
-def replace_images_with_locals(page, url, local_images_path):
+def get_page_with_saved_files(url, dir, page):
+
+    files_folder_name = generate_name(url, ext='_files')
+    files_path = make_files_path(dir, files_folder_name)
     soup = BeautifulSoup(page.text, 'html.parser')
-    page_domain = get_domain(url)
+
     images = soup.find_all('img')
+    page_domain = get_domain(url)
     for image in images:
         image_url = normalize(image['src'], url)
         image_domain = get_domain(image_url)
-        if page_domain in image_domain:
-            image_local_path = download_image(image_url, local_images_path)
-            image['src'] = image_local_path
+        if image_domain == page_domain:
+            image_relative_path = download_image(image_url, files_folder_name, files_path)
+            image['src'] = image_relative_path
+
     return soup.prettify()
 
 
-def download_image(url, local_images_path):
-    image = requests.get(url)
-    image_path = get_image_path(url, local_images_path)
-    with open(image_path, 'wb') as f:
+def make_files_path(dir, files_folder_name):
+    files_path = os.path.join(dir, files_folder_name)
+    os.mkdir(files_path)
+    return files_path
+
+# РЕфакторить 
+def download_image(image_url, files_folder_name, files_path):
+    image = requests.get(image_url)
+    image_name = generate_name(image_url)
+    image_relative_path = generate_path(files_folder_name, image_name)
+    image_absolute_path = generate_path(files_path, image_name)
+    with open(image_absolute_path, 'wb') as f:
         f.write(image.content)
-    return image_path
+    return image_relative_path
 
 
 def normalize(img_url, page_url):
-    img_url_domain = get_domain(img_url)
-    if not img_url_domain:
-        page_url_chunks = urlparse(page_url)
-        scheme = page_url_chunks.scheme
-        netloc = page_url_chunks.netloc
-        img_url = f'{scheme}//{netloc}/{img_url}'
+    img_url_parts = list(urlparse(img_url))
+    img_url_netloc = img_url_parts[1]
+    if not img_url_netloc:
+        page_url_parts = urlparse(page_url)
+        img_url_parts[0] = page_url_parts.scheme
+        img_url_parts[1] = page_url_parts.netloc
+        img_url = urlunparse(img_url_parts)
     return img_url
-
-
-def get_saved_page_path(url, dir):
-    page_name = generate_name(url) + '.html'
-    saved_page_path = os.path.join(dir, page_name)
-    return saved_page_path
-
-
-def get_local_images_path(url, dir):
-    images_folder_name = generate_name(url) + '_files'
-    local_images_path = os.path.join(dir, images_folder_name)
-    os.mkdir(local_images_path)
-    return local_images_path
-
-
-def get_image_path(url, dir):
-    image_name = generate_name(url)
-    image_path = os.path.join(dir, image_name)
-    return image_path
 
 
 def get_domain(url):
     netloc = urlparse(url).netloc
-    if netloc:
-        netloc_chunks = netloc.split('.')
-        domain_1lvl = netloc_chunks[-1]
-        domain_2lvl = netloc_chunks[-2]
-        domain = f'{domain_2lvl}.{domain_1lvl}'
-    else:
-        domain = ''
-    return domain
+    return netloc
 
 
-def generate_name(url):
-    img_ext = {'.png', '.jpg', '.svg'}
-    url, ext = os.path.splitext(url)
-    if ext not in img_ext:
-        ext = ''
+def generate_name(url, ext=''):
+    url, extension = os.path.splitext(url)
+    if ext != '':
+        extension = ext
     if urlparse(url).scheme:
         _, url = url.split('//')
-    name = re.sub(r'[\W_]', '-', url) + ext
+    name = re.sub(r'[\W_]', '-', url) + extension
     return name
+
+
+def generate_path(dir, file):
+    return os.path.join(dir, file)
