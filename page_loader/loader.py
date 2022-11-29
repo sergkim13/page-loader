@@ -17,6 +17,7 @@ def download(url, dir=os.getcwd()):
     if not os.path.exists(dir):
         return 'Указанная директория не найдена.'
 
+    url = normalize_page_url(url)
     page = requests.get(url)
     page_name = generate_name(url, ext='.html')
     page_path = generate_path(dir, page_name)
@@ -35,7 +36,7 @@ def get_page_with_saved_files(url, dir, page):
     images = soup.find_all('img')
     page_domain = get_domain(url)
     for image in images:
-        image_url = normalize(image['src'], url)
+        image_url = normalize_file_url(image['src'], url)
         image_domain = get_domain(image_url)
         if image_domain == page_domain:
             image_relative_path = download_image(
@@ -61,15 +62,23 @@ def download_image(image_url, files_folder_name, files_path):
     return image_relative_path
 
 
-def normalize(img_url, page_url):
-    img_url_parts = list(urlparse(img_url))
-    img_url_netloc = img_url_parts[1]
-    if not img_url_netloc:
+def normalize_page_url(url):
+    url_parts = list(urlparse(url))
+    scheme = url_parts[0]
+    if not scheme:
+        url = 'https://' + url
+    return url
+
+
+def normalize_file_url(file_url, page_url):
+    file_url_parts = list(urlparse(file_url))
+    file_url_netloc = file_url_parts[1]
+    if not file_url_netloc:
         page_url_parts = urlparse(page_url)
-        img_url_parts[0] = page_url_parts.scheme
-        img_url_parts[1] = page_url_parts.netloc
-        img_url = urlunparse(img_url_parts)
-    return img_url
+        file_url_parts[0] = page_url_parts.scheme
+        file_url_parts[1] = page_url_parts.netloc
+        file_url = urlunparse(file_url_parts)
+    return file_url
 
 
 def get_domain(url):
@@ -78,16 +87,25 @@ def get_domain(url):
 
 
 def generate_name(url, ext=''):
-    url, extension = os.path.splitext(url)
+    if url_has_path(url):
+        url, extension = os.path.splitext(url)
+
     if ext != '':
         extension = ext
+
     url_parts = list(urlparse(url))
     url_parts[0] = ''
     url = urlunparse(url_parts)
+
     if url.startswith('//'):
         url = url[2:]
+
     name = re.sub(r'[\W_]', '-', url) + extension
     return name
+
+
+def url_has_path(url):
+    return True if urlparse(url).path else False
 
 
 def generate_path(dir, file):
