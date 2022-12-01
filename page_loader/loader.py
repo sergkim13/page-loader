@@ -33,6 +33,12 @@ def get_page_with_saved_files(url, dir, page):
     files_path = make_files_path(dir, files_folder_name)
     soup = BeautifulSoup(page.text, 'html.parser')
 
+    download_local_images(url, soup, files_folder_name, files_path)
+
+    return soup.prettify()
+
+
+def download_local_images(url, soup, files_folder_name, files_path):
     images = soup.find_all('img')
     page_domain = get_domain(url)
     for image in images:
@@ -42,8 +48,6 @@ def get_page_with_saved_files(url, dir, page):
             image_relative_path = download_image(
                 image_url, files_folder_name, files_path)
             image['src'] = image_relative_path
-
-    return soup.prettify()
 
 
 def make_files_path(dir, files_folder_name):
