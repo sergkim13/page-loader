@@ -7,7 +7,7 @@
   <meta content="Обучение языкам программирования онлайн, получи востребованную профессию в IT. Курсы программирования для начинающих и опытных программистов, опытные менторы, живое сообщество" name="description"/>
   <link href="https://ru.hexlet.io/courses" rel="canonical"/>
   <link href="https://en.hexlet.io/courses" hreflang="en" rel="alternate"/>
-  <link href="assets/hexlet_logo_wide-56fe12bf29287c1ac237ef1e5fa70e861e99a954af1f49504f654ae4990fa42b.png" rel="image_src"/>
+  <link href="/assets/hexlet_logo_wide-56fe12bf29287c1ac237ef1e5fa70e861e99a954af1f49504f654ae4990fa42b.png" rel="image_src"/>
   <meta content="Обучение языкам программирования онлайн, получи востребованную профессию в IT. Курсы программирования для начинающих и опытных программистов, опытные менторы, живое сообщество" property="og:description"/>
   <meta content="website" property="og:type"/>
   <meta content="Курсы программирования, обучение онлайн" property="og:title"/>
@@ -23,7 +23,7 @@
       <meta content="IE=Edge" http-equiv="X-UA-Compatible"/>
       <meta content="b9d3902d34" name="verify-admitad"/>
       <meta content="aa2vrdtq64dub8knuf83lwywit311w" name="facebook-domain-verification"/>
-      <link href="assets/application-8dcc80087a1e4a2cb78752144707fc8b1bd5dede573dfe6174d69fcdf88eb50b.css" media="all" rel="stylesheet">
+      <link href="/assets/application-8dcc80087a1e4a2cb78752144707fc8b1bd5dede573dfe6174d69fcdf88eb50b.css" media="all" rel="stylesheet">
        <script>
         //<![CDATA[
 window.gon={};gon.fired_events={};gon.is_bot=false;gon.applications={};gon.current_user={"id":494736,"email":"goldenhawk@list.ru","sanitized_phone_number":"","username":"sergkim","created_at":"2022-07-27T11:28:50.229+03:00","last_viewed_notification_id":3770406,"paid_days_count":25,"first_name":"","last_name":"","full_name":"sergkim","birthday":null,"city":null,"country":null,"text":"goldenhawk@list.ru (sergkim)","is_guest":false,"is_mentor":null,"is_tutor":false,"is_hexlet_employee":false,"current_company":null,"can_use_paid_features":true,"current_program":"python","is_active_group_member":false,"is_active_async_group_member":false,"url":"https://hexlet.io/u/sergkim"};gon.token="X8TphuuipJb-Jk-jx68N0lWtNC4UOGdI40SSlKJJFMLMW-_gGAwPY3IZuuvWq05Ycj7zXrdsJzOeE3Xu17mWUg";gon.events=["blog_post_moderation_submitted","code_review_created","company_balance_recounted","company_created","company_updated","course_started","course_finished","exercise_started","lead_created","lesson_started","lesson_finished","lesson_unit_finished","product_payment_paid","program_started","program_finished","project_started","project_check_point_finished","project_sent_to_review","project_finished","registration_failed","show_lead_modal","signed_up","signed_up_program_started","solution_viewed","subscription_cancelled","subscription_deleted","subscription_created","subscription_paid","subscription_price_changed","subscription_product_changed","test","topic_created","topic_comment_created","tutor_assigned","tutorship_application_created","user_email_confirmed","user_email_changed","user_updated","added_to_group","custom_payment_paid","test_event","project_member_review_accepted","project_member_review_approved","project_member_review_declined","project_member_review_rejected","topic_assigned","topic_comment_marked_as_solution","qna_answer_created","qna_question_created"];gon.disqus_name="hexletio";gon.locale="ru";gon.rails_env="production";gon.mobile=false;gon.google={"analytics_key":"UA-1360700-51","optimize_key":"GTM-5QDVFPF"};gon.recaptcha={"site_key_v3":"6LenGbgZAAAAAM7HbrDbn5JlizCSzPcS767c9vaY"};gon.social_signin=false;gon.typoreporter_google_form_id="1FAIpQLSeibfGq-KvWQ2Fyru-zkFFRVTLBuzXAHAoEyN1p49FtDmNoNA";gon.notifications=[{"id":3789293,"message":"Сохранили решение для \u003cb\u003eМанкипатчинг\u003c/b\u003e","url":"https://ru.hexlet.io/code_reviews/792236","human_created_at":"14 ноября 2022","icon":"\u003cspan class=\"fas fa-bicycle\"\u003e\u003c/span\u003e"},{"id":3783937,"message":"Сохранили решение для \u003cb\u003eТестирование кода, взаимодействующего с файлами\u003c/b\u003e","url":"https://ru.hexlet.io/code_reviews/788644","human_created_at":"11 ноября 2022","icon":"\u003cspan class=\"fas fa-bicycle\"\u003e\u003c/span\u003e"},{"id":3782041,"message":"Сохранили решение для \u003cb\u003eАгрегация в двоичном дереве\u003c/b\u003e","url":"https://ru.hexlet.io/code_reviews/787432","human_created_at":"10 ноября 2022","icon":"\u003cspan class=\"fas fa-bicycle\"\u003e\u003c/span\u003e"},{"id":3779831,"message":"Сохранили решение для \u003cb\u003eПостроение двоичного дерева\u003c/b\u003e","url":"https://ru.hexlet.io/code_reviews/786009","human_created_at":"09 ноября 2022","icon":"\u003cspan class=\"fas fa-bicycle\"\u003e\u003c/span\u003e"},{"id":3779185,"message":"Сохранили решение для \u003cb\u003eПоиск в двоичном дереве\u003c/b\u003e","url":"https://ru.hexlet.io/code_reviews/785555","human_created_at":"09 ноября 2022","icon":"\u003cspan class=\"fas fa-bicycle\"\u003e\u003c/span\u003e"},{"id":3774718,"message":"Сохранили решение для \u003cb\u003eСловарь с псевдонимами\u003c/b\u003e","url":"https://ru.hexlet.io/code_reviews/782624","human_created_at":"07 ноября 2022","icon":"\u003cspan class=\"fas fa-bicycle\"\u003e\u003c/span\u003e"}];
@@ -261,7 +261,7 @@ window.gon={};gon.fired_events={};gon.is_bot=false;gon.applications={};gon.curre
            <picture>
             <source srcset="https://cdn2.hexlet.io/assets/team/you-bc72575a0e6eb39de3e28e54a8df1138beaa57cd5300061ecb5c202773131f9e.jpg" type="image/webp"/>
             <source srcset="https://cdn2.hexlet.io/assets/team/you-bc72575a0e6eb39de3e28e54a8df1138beaa57cd5300061ecb5c202773131f9e.jpg" type="image/png"/>
-            <img alt="Аватар пользователя sergkim" class="rounded-circle" height="50" loading="lazy" src="assets/team/you-bc72575a0e6eb39de3e28e54a8df1138beaa57cd5300061ecb5c202773131f9e.jpg" width="50"/>
+            <img alt="Аватар пользователя sergkim" class="rounded-circle" height="50" loading="lazy" src="/assets/team/you-bc72575a0e6eb39de3e28e54a8df1138beaa57cd5300061ecb5c202773131f9e.jpg" width="50"/>
            </picture>
           </div>
           <div>
@@ -336,7 +336,7 @@ window.gon={};gon.fired_events={};gon.is_bot=false;gon.applications={};gon.curre
       </a>
      </div>
      <div class="col-auto col-lg-4">
-      <img alt="Как учиться на Хекслете" class="img-fluid d-none d-lg-block" loading="lazy" src="assets/at_a_laptop-8c6e59267f91a6bf13bae0e5c0f7e1f36accc440b8d760bca08ab244e2b8bdbf.png"/>
+      <img alt="Как учиться на Хекслете" class="img-fluid d-none d-lg-block" loading="lazy" src="/assets/at_a_laptop-8c6e59267f91a6bf13bae0e5c0f7e1f36accc440b8d760bca08ab244e2b8bdbf.png"/>
      </div>
     </div>
     <section class="pt-3">
@@ -3949,11 +3949,11 @@ window.gon={};gon.fired_events={};gon.is_bot=false;gon.applications={};gon.curre
   </footer>
   <script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/runtime-c4b43f470ed8aa7886d2fec2c7f972044ebbaa6c75aebf9585353af301f61c8c.js">
   </script>
-  <script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/sprockets-423c98b6a28c3fab45c96e660879310c4f39c8694f8c4763628f45148bb06d4d.js">
+  <script crossorigin="anonymous" src="/assets/sprockets-423c98b6a28c3fab45c96e660879310c4f39c8694f8c4763628f45148bb06d4d.js">
   </script>
-  <script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/routes-14b27842b52305fbfe18e2ec2da2f30795e6f06d7181203ea85aa2af5b47c7b5.js">
+  <script crossorigin="anonymous">
   </script>
-  <script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/vendors-99331910736b001606d2b79692ef453e468ff13dd6d7fa41022dd5bfd60be728.js">
+  <script crossorigin="anonymous">
   </script>
   <script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/locales-8ed678fecbf69a8e53f0734ab339a0f857d23e32e19eb894fb621e5eb4f8ab51.js">
   </script>
@@ -3967,9 +3967,9 @@ window.gon={};gon.fired_events={};gon.is_bot=false;gon.applications={};gon.curre
   </script>
   <script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/application-14a5e7d2b1ecff7ca6473714b6451595a33d872f1c17bc1b159e546f09a0c106.js">
   </script>
-  <script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/bf_promo_banner-c973c1c9fec9bc51fd65442de9aa21e4ab32738bda309c63fdb4b1baf76960e6.js">
+  <script crossorigin="anonymous" src="/assets/bf_promo_banner-c973c1c9fec9bc51fd65442de9aa21e4ab32738bda309c63fdb4b1baf76960e6.js">
   </script>
-  <script crossorigin="anonymous" src="https://cdn2.hexlet.io/assets/notifications-3084db50a6641d548dfcf6e0e325750522d40958c5c9625b4acf1222e599ee36.js">
+  <script crossorigin="anonymous" src="https://ru.hexlet.io/assets/notifications-3084db50a6641d548dfcf6e0e325750522d40958c5c9625b4acf1222e599ee36.js">
   </script>
  </body>
 </html>
