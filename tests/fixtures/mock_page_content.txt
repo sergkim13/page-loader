@@ -128,7 +128,7 @@ window.gon={};gon.fired_events={};gon.is_bot=false;gon.applications={};gon.curre
        <script type="application/ld+json">
         {"@context":"https://schema.org","@type":"Organization","name":"Hexlet","url":"https://hexlet.io","sameAs":["https://www.facebook.com/Hexlet","https://www.youtube.com/user/HexletUniversity","https://twitter.com/HexletHQ","https://soundcloud.com/hexlet"],"legalName":"Hexlet Ltd.","address":"Itälahdenkatu 22 A, 00210 Helsinki, Finland","vatID":"VAT ID: FI26641607","telephone":"+7 495 085 28 38","logo":{"@type":"ImageObject","url":"https://cdn2.hexlet.io/assets/hexlet_logo-4e7b643fd7cbe42da81624aba2faa9267523b2b925d5b576536e05d061659083.png"}}
        </script>
-       <link href="https://ru.hexlet.io/lessons.rss" rel="alternate" title="RSS" type="application/rss+xml">
+       <link href="https://www.hexlet.io/lessons.rss" rel="alternate" title="RSS" type="application/rss+xml">
        </link>
       </link>
      </link>
