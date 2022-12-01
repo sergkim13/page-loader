@@ -1,0 +1,3 @@
+ru-hexlet-io-courses_files/ru-hexlet-io-assets-sprockets-423c98b6a28c3fab45c96e660879310c4f39c8694f8c4763628f45148bb06d4d.js,
+ru-hexlet-io-courses_files/ru-hexlet-io-assets-bf-promo-banner-c973c1c9fec9bc51fd65442de9aa21e4ab32738bda309c63fdb4b1baf76960e6.js,
+ru-hexlet-io-courses_files/ru-hexlet-io-assets-notifications-3084db50a6641d548dfcf6e0e325750522d40958c5c9625b4acf1222e599ee36.js
