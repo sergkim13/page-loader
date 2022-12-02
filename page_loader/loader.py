@@ -86,12 +86,12 @@ def download_file(file_url, files_folder_name, files_path):
     file_name = generate_name(file_url)
     file_relative_path = generate_path(files_folder_name, file_name)
     file_absolute_path = generate_path(files_path, file_name)
-    
+
     if file_url.upper().endswith(images_ext):
         with open(file_absolute_path, 'wb') as f:
             f.write(file.content)
         return file_relative_path
-    
+
     else:
         with open(file_absolute_path, 'w') as f:
             f.write(file.text)

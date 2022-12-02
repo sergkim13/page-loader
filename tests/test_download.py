@@ -23,7 +23,7 @@ expected_page = open(path_to_expected_html_page).read()
 # Ожидаемая директория файлов и имена файлов
 expected_html_files_dir = 'ru-hexlet-io-courses_files/'
 path_to_expected_files_names = 'tests/fixtures/expected_files_names.txt'                                                     # noqa: E501
-expected_files_names_set = set(open(path_to_expected_files_names).read().split(',\n'))
+expected_files_names_set = set(open(path_to_expected_files_names).read().split(',\n'))                                       # noqa: E501
 
 # Мок страницы
 path_to_mock_page = 'tests/fixtures/mock_page_content.txt'
@@ -75,7 +75,7 @@ def test_download():
                 temp_dir, expected_html_files_dir)
             result_page = open(result_page_path).read()
             assert result_page == expected_page
-            assert set(os.listdir(result_html_files_path)) == expected_files_names_set
+            assert set(os.listdir(result_html_files_path)) == expected_files_names_set                                     # noqa: E501
 
 
 def test_download_to_not_exist_dir():
