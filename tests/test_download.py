@@ -9,7 +9,7 @@ url = 'https://ru.hexlet.io/courses'
 img1 = 'https://ru.hexlet.io/assets/logo_ru-495f05850e0095ea722a2b583565d492719579c02b0ce61d924e4f895fabf781.svg'            # noqa: E501
 img2 = 'https://ru.hexlet.io/assets/team/you-bc72575a0e6eb39de3e28e54a8df1138beaa57cd5300061ecb5c202773131f9e.jpg'           # noqa: E501
 img3 = 'https://ru.hexlet.io/assets/at_a_laptop-8c6e59267f91a6bf13bae0e5c0f7e1f36accc440b8d760bca08ab244e2b8bdbf.png'        # noqa: E501
-link1 = 'https://ru.hexlet.io/courses'
+link1 = 'https://ru.hexlet.io/course'
 link2 = 'https://ru.hexlet.io/assets/hexlet_logo_wide-56fe12bf29287c1ac237ef1e5fa70e861e99a954af1f49504f654ae4990fa42b.png'  # noqa: E501
 link3 = 'https://ru.hexlet.io/assets/application-8dcc80087a1e4a2cb78752144707fc8b1bd5dede573dfe6174d69fcdf88eb50b.css'       # noqa: E501
 script1 = 'https://ru.hexlet.io/assets/sprockets-423c98b6a28c3fab45c96e660879310c4f39c8694f8c4763628f45148bb06d4d.js'        # noqa: E501
@@ -58,10 +58,18 @@ mock_script3 = open(path_to_mock_script3, 'r').read()
 def test_download():
 
     with requests_mock.Mocker() as m:
+
         m.get(url, text=mock_text)
         m.get(img1, content=mock_img1)
         m.get(img2, content=mock_img2)
         m.get(img3, content=mock_img3)
+        m.get(link1, text=mock_link1)
+        m.get(link2, content=mock_link2)
+        m.get(link3, text=mock_link3)
+        m.get(script1, text=mock_script1)
+        m.get(script2, text=mock_script2)
+        m.get(script3, text=mock_script3)
+
         with tempfile.TemporaryDirectory() as temp_dir:
             result_page_path = download(url, temp_dir)
             result_html_files_path = os.path.join(
