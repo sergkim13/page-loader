@@ -1,3 +1,0 @@
-[<link href="https://ru.hexlet.io/courses" rel="canonical"/>, 
-<link href="https://cdn2.hexlet.io/assets/hexlet_logo_wide-56fe12bf29287c1ac237ef1e5fa70e861e99a954af1f49504f654ae4990fa42b.png" rel="image_src"/>,
-<link href="https://cdn2.hexlet.io/assets/application-8dcc80087a1e4a2cb78752144707fc8b1bd5dede573dfe6174d69fcdf88eb50b.css" media="all" rel="stylesheet"/>, 
