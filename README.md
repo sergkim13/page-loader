@@ -20,4 +20,4 @@ MacOS / Linux
 ______________
 
 #### Demo:
-[![asciicast](https://asciinema.org/a/QxhTV8iviKxibMFxCFpqdODeb.svg)](https://asciinema.org/a/QxhTV8iviKxibMFxCFpqdODeb)
+[![asciicast](https://asciinema.org/a/adRYWJkDQn81eIzEYUGNqvjvQ.svg)](https://asciinema.org/a/adRYWJkDQn81eIzEYUGNqvjvQ)
