@@ -25,8 +25,7 @@ def download(url, dir=os.getcwd()):
     page_with_saved_files = get_page_with_saved_files(url, dir, page)
     with open(page_path, 'w') as file:
         file.write(page_with_saved_files)
-    print(f'Page was downloaded as {page_path}')
-    return page_path
+    return f"Page was downloaded as \'{page_path}\'"
 
 
 def get_page_with_saved_files(url, dir, page):
