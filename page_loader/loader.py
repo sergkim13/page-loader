@@ -3,6 +3,22 @@ import requests
 import re
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, urlunparse
+import logging
+import logging.config
+
+
+def init_logger(name):
+    logger = logging.getLogger(name)
+    FORMAT = '%(levelname)s - %(name)s:%(lineno)s - %(message)s'
+    logger.setLevel(logging.DEBUG)
+    sh = logging.StreamHandler()
+    sh.setFormatter(logging.Formatter(FORMAT))
+    sh.setLevel(logging.DEBUG)
+    logger.addHandler(sh)
+
+
+init_logger(__name__)
+logger = logging.getLogger(__name__)
 
 
 def download(url, dir=os.getcwd()):
@@ -19,11 +35,19 @@ def download(url, dir=os.getcwd()):
         return 'Указанная директория не найдена.'
 
     url = normalize_page_url(url)
-    page = requests.get(url)
+    try:
+        page = requests.get(url)
+        logger.info(f'requested url: {url}')
+    except ConnectionError as err:
+        logger.error(err)
+
     page_name = generate_name(url, ext='.html')
     page_path = os.path.abspath(generate_path(dir, page_name))
+    logger.info(f'output path: {page_path}')
+    logger.info('start downloading page')
     page_with_saved_files = get_page_with_saved_files(url, dir, page)
     with open(page_path, 'w') as file:
+        logger.info('start writing final html file')
         file.write(page_with_saved_files)
     return f"Page was downloaded as \'{page_path}\'"
 

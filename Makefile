@@ -10,6 +10,9 @@ package-install:
 force-reinstall:
 	python3 -m pip install --force-reinstall --user dist/*.whl
 
+quick-install:
+	python3 -m pip install .
+
 test:
 	poetry run pytest
 
