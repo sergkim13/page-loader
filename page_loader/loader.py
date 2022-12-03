@@ -21,10 +21,11 @@ def download(url, dir=os.getcwd()):
     url = normalize_page_url(url)
     page = requests.get(url)
     page_name = generate_name(url, ext='.html')
-    page_path = generate_path(dir, page_name)
+    page_path = os.path.abspath(generate_path(dir, page_name))
     page_with_saved_files = get_page_with_saved_files(url, dir, page)
     with open(page_path, 'w') as file:
         file.write(page_with_saved_files)
+    print(f'Page was downloaded as {page_path}')
     return page_path
 
 
@@ -32,52 +33,31 @@ def get_page_with_saved_files(url, dir, page):
     files_folder_name = generate_name(url, ext='_files')
     files_path = make_files_path(dir, files_folder_name)
     soup = BeautifulSoup(page.text, 'html.parser')
-    download_local_images(url, soup, files_folder_name, files_path)
-    download_local_links(url, soup, files_folder_name, files_path)
-    download_local_scripts(url, soup, files_folder_name, files_path)
+
+    images = soup.find_all('img')
+    download_local_files(
+        url, images, files_folder_name, files_path)
+
+    links = soup.find_all('link')
+    download_local_files(
+        url, links, files_folder_name, files_path, attr='href')
+
+    scripts = soup.find_all(scripts_with_src)
+    download_local_files(
+        url, scripts, files_folder_name, files_path)
+
     return soup.prettify()
 
 
-def download_local_images(url, soup, files_folder_name, files_path):
-    images = soup.find_all('img')
+def download_local_files(url, tags, files_folder_name, files_path, attr='src'):
     page_domain = get_domain(url)
-    for image in images:
-        image_url = normalize_file_url(image['src'], url)
-        image_domain = get_domain(image_url)
-        if image_domain == page_domain:
-            image_relative_path = download_file(
-                image_url, files_folder_name, files_path)
-            image['src'] = image_relative_path
-
-
-def download_local_links(url, soup, files_folder_name, files_path):
-    links = soup.find_all('link')
-    page_domain = get_domain(url)
-    for link in links:
-        link_url = normalize_file_url(link['href'], url)
-        link_domain = get_domain(link_url)
-        if link_domain == page_domain:
-            link_relative_path = download_file(
-                link_url, files_folder_name, files_path)
-            link['href'] = link_relative_path
-
-
-def download_local_scripts(url, soup, files_folder_name, files_path):
-    scripts = soup.find_all(scripts_with_src)
-    page_domain = get_domain(url)
-    for script in scripts:
-        script_url = normalize_file_url(script['src'], url)
-        script_domain = get_domain(script_url)
-        if script_domain == page_domain:
-            link_relative_path = download_file(
-                script_url, files_folder_name, files_path)
-            script['src'] = link_relative_path
-
-
-def make_files_path(dir, files_folder_name):
-    files_path = generate_path(dir, files_folder_name)
-    os.mkdir(files_path)
-    return files_path
+    for tag in tags:
+        tag_url = normalize_file_url(tag[attr], url)
+        tag_url_domain = get_domain(tag_url)
+        if tag_url_domain == page_domain:
+            file_relative_path = download_file(
+                tag_url, files_folder_name, files_path)
+            tag[attr] = file_relative_path
 
 
 def download_file(file_url, files_folder_name, files_path):
@@ -96,6 +76,12 @@ def download_file(file_url, files_folder_name, files_path):
         with open(file_absolute_path, 'w') as f:
             f.write(file.text)
         return file_relative_path
+
+
+def make_files_path(dir, files_folder_name):
+    files_path = generate_path(dir, files_folder_name)
+    os.mkdir(files_path)
+    return files_path
 
 
 def scripts_with_src(tag):
