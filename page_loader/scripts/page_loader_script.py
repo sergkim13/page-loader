@@ -26,6 +26,7 @@ def main():
         sys.exit(72)
     except requests.exceptions.ConnectionError:
         logger.error('Failed to connect URL.')
+        sys.exit(1)
 
 
 if __name__ == '__main__':
