@@ -1,30 +1,28 @@
-from page_loader import download
 import requests_mock
 import tempfile
 import pytest
-
+from page_loader import download
 
 # Тестовые данные
-url401 = 'https://vk.com'
-url403 = 'https://rutor.info'
-url404 = 'https://google.com'
-url500 = 'https://ya.ru'
-url501 = 'https://rutracker.org'
+url1 = 'https://vk.com'
+
+url2 = 'https://ya.ru'
+url2_mock = '<img src="assets/mock.png"/>'
+url2_img_src = 'https://ya.ru/assets/mock.png'
 
 
-def test_exception_ConnectionError():
+def test_exception__page_ConnectionError():
     with requests_mock.Mocker() as m:
-        # m.get(url401, status_code=401)
-        # m.get(url403, status_code=403)
-        # m.get(url404, status_code=404)
-        # m.get(url500, status_code=500)
-        m.get(url501, status_code=500)
-
+        m.get(url1, exc=ConnectionError)
         with tempfile.TemporaryDirectory() as temp_dir:
-
             with pytest.raises(ConnectionError):
-                # download(url401, temp_dir)
-                # download(url403, temp_dir)
-                # download(url404, temp_dir)
-                # download(url500, temp_dir)
-                download(url501, temp_dir)
+                download(url1, temp_dir)
+
+
+def test_exception_file_ConnectionError():
+    with requests_mock.Mocker() as m:
+        m.get(url2, text=url2_mock)
+        m.get(url2_img_src, exc=ConnectionError)
+        with tempfile.TemporaryDirectory() as temp_dir:
+            with pytest.raises(ConnectionError):
+                download(url2, temp_dir)
