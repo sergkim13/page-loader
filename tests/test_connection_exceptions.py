@@ -1,3 +1,4 @@
+import requests
 import requests_mock
 import tempfile
 import pytest
@@ -13,16 +14,16 @@ url2_img_src = 'https://ya.ru/assets/mock.png'
 
 def test_exception__page_ConnectionError():
     with requests_mock.Mocker() as m:
-        m.get(url1, exc=ConnectionError)
+        m.get(url1, exc=requests.exceptions.ConnectionError)
         with tempfile.TemporaryDirectory() as temp_dir:
-            with pytest.raises(ConnectionError):
+            with pytest.raises(requests.exceptions.ConnectionError):
                 download(url1, temp_dir)
 
 
 def test_exception_file_ConnectionError():
     with requests_mock.Mocker() as m:
         m.get(url2, text=url2_mock)
-        m.get(url2_img_src, exc=ConnectionError)
+        m.get(url2_img_src, exc=requests.exceptions.ConnectionError)
         with tempfile.TemporaryDirectory() as temp_dir:
-            with pytest.raises(ConnectionError):
+            with pytest.raises(requests.exceptions.ConnectionError):
                 download(url2, temp_dir)

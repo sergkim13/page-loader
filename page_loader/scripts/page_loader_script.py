@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-from page_loader import download
-from page_loader.args_parser import get_args
 import logging
 import sys
+import requests
+from page_loader import download
+from page_loader.args_parser import get_args
+
 
 logger = logging.getLogger()
 
@@ -12,7 +14,7 @@ def main():
     try:
         print(download(args.URL, args.output))
     except FileNotFoundError:
-        logger.error(f'Directory \'{args.output}\' is not exists. ')
+        logger.error(f'Directory \'{args.output}\' does not exist. ')
         sys.exit(72)
     except PermissionError:
         logger.error(
@@ -22,7 +24,7 @@ def main():
     except FileExistsError:
         logger.error('File is already exists.')
         sys.exit(72)
-    except ConnectionError:
+    except requests.exceptions.ConnectionError:
         logger.error('Failed to connect URL.')
 
 
