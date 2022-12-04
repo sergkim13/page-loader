@@ -21,3 +21,6 @@ ______________
 
 #### Demo:
 [![asciicast](https://asciinema.org/a/adRYWJkDQn81eIzEYUGNqvjvQ.svg)](https://asciinema.org/a/adRYWJkDQn81eIzEYUGNqvjvQ)
+
+#### Demo handling errors:
+[![asciicast](https://asciinema.org/a/XULNV1mAH2u9F2CeEMZP8Nntc.svg)](https://asciinema.org/a/XULNV1mAH2u9F2CeEMZP8Nntc)
