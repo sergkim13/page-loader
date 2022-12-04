@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse, urlunparse
 import logging
 import logging.config
+from progress.bar import IncrementalBar
 
 
 def init_logger(name):
@@ -85,13 +86,17 @@ def get_page_with_saved_files(url, dir, page):
 
 def download_local_files(url, tags, files_folder_name, files_path, attr='src'):
     page_domain = get_domain(url)
-    for tag in tags:
-        tag_url = normalize_file_url(tag[attr], url)
-        tag_url_domain = get_domain(tag_url)
-        if tag_url_domain == page_domain:
-            file_relative_path = download_file(
-                tag_url, files_folder_name, files_path)
-            tag[attr] = file_relative_path
+    bar_width = len(tags)
+    with IncrementalBar(f"Downloading:", max=bar_width) as bar:
+        bar.suffix = "%(percent).1f%% (eta: %(eta)s)"
+        for tag in tags:
+            tag_url = normalize_file_url(tag[attr], url)
+            tag_url_domain = get_domain(tag_url)
+            if tag_url_domain == page_domain:
+                file_relative_path = download_file(
+                    tag_url, files_folder_name, files_path)
+                tag[attr] = file_relative_path
+            bar.next()
 
 
 def download_file(file_url, files_folder_name, files_path):
