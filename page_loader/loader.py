@@ -68,34 +68,50 @@ def get_page_with_saved_files(url, dir, page):
         raise
 
     soup = BeautifulSoup(page.text, 'html.parser')
-
-    images = soup.find_all('img')
-    download_local_files(
-        url, images, files_folder_name, files_path)
-
-    links = soup.find_all('link')
-    download_local_files(
-        url, links, files_folder_name, files_path, attr='href')
-
-    scripts = soup.find_all(scripts_with_src)
-    download_local_files(
-        url, scripts, files_folder_name, files_path)
+    files = get_files_in_domain(soup, url)
+    download_local_files(files, files_folder_name, files_path)
 
     return soup.prettify()
 
 
-def download_local_files(url, tags, files_folder_name, files_path, attr='src'):
+def get_files_in_domain(soup, url):
     page_domain = get_domain(url)
+
+    def get_files(tag):
+        return (
+            tag.name == 'img'
+            and get_domain(normalize_file_url(tag['src'], url)) == page_domain
+
+            or tag.name == 'link'
+            and get_domain(normalize_file_url(tag['href'], url)) == page_domain
+
+            or tag.name == 'script' and tag.has_attr('src')
+            and get_domain(normalize_file_url(tag['src'], url)) == page_domain)
+
+    tags = soup.find_all(get_files)
+    for tag in tags:
+        if tag.has_attr('src'):
+            attr = 'src'
+        else:
+            attr = 'href'
+        tag[attr] = normalize_file_url(tag[attr], url)
+    return tags
+
+
+def download_local_files(tags, files_folder_name, files_path):
     bar_width = len(tags)
-    with IncrementalBar(f"Downloading:", max=bar_width) as bar:
+    with IncrementalBar("Downloading:", max=bar_width) as bar:
         bar.suffix = "%(percent).1f%% (eta: %(eta)s)"
         for tag in tags:
-            tag_url = normalize_file_url(tag[attr], url)
-            tag_url_domain = get_domain(tag_url)
-            if tag_url_domain == page_domain:
-                file_relative_path = download_file(
-                    tag_url, files_folder_name, files_path)
-                tag[attr] = file_relative_path
+            if tag.has_attr('src'):
+                attr = 'src'
+            else:
+                attr = 'href'
+
+            tag_url = tag[attr]
+            file_relative_path = download_file(
+                tag_url, files_folder_name, files_path)
+            tag[attr] = file_relative_path
             bar.next()
 
 
@@ -126,10 +142,6 @@ def make_files_path(dir, files_folder_name):
     files_path = generate_path(dir, files_folder_name)
     os.mkdir(files_path)
     return files_path
-
-
-def scripts_with_src(tag):
-    return tag.name == 'script' and tag.has_attr('src')
 
 
 def normalize_page_url(url):
