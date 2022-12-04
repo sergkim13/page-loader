@@ -30,31 +30,42 @@ def download(url, dir=os.getcwd()):
     2) Все символы, кроме букв и цифр, заменяются на дефис -.
     3) В конце ставится .html.
     '''
-
     if not os.path.exists(dir):
-        return 'Указанная директория не найдена.'
+        raise FileNotFoundError
+    if not os.access(dir, os.W_OK):
+        raise PermissionError
 
     url = normalize_page_url(url)
     try:
         page = requests.get(url)
         logger.info(f'requested url: {url}')
-    except ConnectionError as err:
-        logger.error(err)
+    except ConnectionError:
+        raise
 
     page_name = generate_name(url, ext='.html')
     page_path = os.path.abspath(generate_path(dir, page_name))
+    if os.path.exists(page_path):
+        raise FileExistsError
+
     logger.info(f'output path: {page_path}')
     logger.info('start downloading page')
     page_with_saved_files = get_page_with_saved_files(url, dir, page)
     with open(page_path, 'w') as file:
         logger.info('start writing final html file')
         file.write(page_with_saved_files)
+
     return f"Page was downloaded as \'{page_path}\'"
 
 
 def get_page_with_saved_files(url, dir, page):
+    logger.info('start saving local files')
     files_folder_name = generate_name(url, ext='_files')
-    files_path = make_files_path(dir, files_folder_name)
+
+    try:
+        files_path = make_files_path(dir, files_folder_name)
+    except FileExistsError:
+        raise
+
     soup = BeautifulSoup(page.text, 'html.parser')
 
     images = soup.find_all('img')
@@ -85,7 +96,12 @@ def download_local_files(url, tags, files_folder_name, files_path, attr='src'):
 
 def download_file(file_url, files_folder_name, files_path):
     images_ext = ('.JPEG', '.GIF', '.PNG', '.SVG')
-    file = requests.get(file_url)
+
+    try:
+        file = requests.get(file_url)
+    except ConnectionError:
+        raise
+
     file_name = generate_name(file_url)
     file_relative_path = generate_path(files_folder_name, file_name)
     file_absolute_path = generate_path(files_path, file_name)
