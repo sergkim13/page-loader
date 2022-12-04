@@ -22,6 +22,8 @@ def main():
     except FileExistsError:
         logger.error('File is already exists.')
         sys.exit(72)
+    except ConnectionError:
+        logger.error('Failed to connect URL.')
 
 
 if __name__ == '__main__':
