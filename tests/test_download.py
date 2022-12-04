@@ -77,8 +77,3 @@ def test_download():
             result_page = open(result_page_path).read()
             assert result_page == expected_page
             assert set(os.listdir(result_html_files_path)) == expected_files_names_set                                     # noqa: E501
-
-
-def test_download_to_not_exist_dir():
-    not_exist_dir = 'not_exist_dir/'
-    assert download(url, not_exist_dir) == 'Указанная директория не найдена.'
