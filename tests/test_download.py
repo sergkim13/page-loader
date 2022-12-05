@@ -70,8 +70,7 @@ def test_download():
         m.get(script3, text=mock_script3)
 
         with tempfile.TemporaryDirectory() as temp_dir:
-            result = download(url, temp_dir)
-            result_page_path = result[24:-1]
+            result_page_path = download(url, temp_dir)
             result_html_files_path = os.path.join(
                 temp_dir, expected_html_files_dir)
             result_page = open(result_page_path).read()

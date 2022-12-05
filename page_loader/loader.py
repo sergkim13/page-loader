@@ -175,7 +175,7 @@ def generate_name(url, ext=''):
     if url_has_path(url):
         url, extension = os.path.splitext(url)
         if not extension:
-            ext = '.html'
+            extension = '.html'
 
     if ext != '':
         extension = ext
