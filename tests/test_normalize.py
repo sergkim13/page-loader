@@ -1,4 +1,4 @@
-from page_loader.loader import normalize_page_url, normalize_file_url
+from page_loader.tools import normalize_url
 
 
 url = 'https://hexlet.io/courses/'
@@ -10,12 +10,12 @@ expected_normalized_img2 = img_url2
 
 
 def test_normalize_url():
-    result = normalize_page_url(url_without_scheme)
+    result = normalize_url(url_without_scheme)
     assert result == url
 
 
 def test_normalize():
-    result1 = normalize_file_url(img_url1, url)
-    result2 = normalize_file_url(img_url2, url)
+    result1 = normalize_url(img_url1, url)
+    result2 = normalize_url(img_url2, url)
     assert result1 == expected_normalized_img1
     assert result2 == expected_normalized_img2
