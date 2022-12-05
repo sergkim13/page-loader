@@ -39,6 +39,7 @@ def download(url, dir=os.getcwd()):
     url = normalize_page_url(url)
     try:
         page = requests.get(url)
+        page.raise_for_status()
         logger.info(f'requested url: {url}')
     except (requests.exceptions.RequestException, OSError, requests.exceptions.HTTPError):
         raise
@@ -120,6 +121,7 @@ def download_file(file_url, files_folder_name, files_path):
 
     try:
         file = requests.get(file_url)
+        file.raise_for_status()
     except (requests.exceptions.RequestException, OSError, requests.exceptions.HTTPError):
         raise
 
