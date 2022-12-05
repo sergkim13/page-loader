@@ -6,18 +6,10 @@ from urllib.parse import urlparse, urlunparse
 import logging
 import logging.config
 from progress.bar import IncrementalBar
+from logger import init_logger
 
 
-def init_logger(name):
-    logger = logging.getLogger(name)
-    FORMAT = '%(levelname)s - %(name)s:%(lineno)s - %(message)s'
-    logger.setLevel(logging.DEBUG)
-    sh = logging.StreamHandler()
-    sh.setFormatter(logging.Formatter(FORMAT))
-    sh.setLevel(logging.DEBUG)
-    logger.addHandler(sh)
-
-
+# Создаем логгер
 init_logger(__name__)
 logger = logging.getLogger(__name__)
 
