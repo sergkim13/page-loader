@@ -40,62 +40,35 @@ def download(url, dir=os.getcwd()):
     page_path = os.path.abspath(generate_path(dir, page_name))
     if os.path.exists(page_path):
         raise FileExistsError
-    
-    assets_dir = generate_name(url, ext='_files')
-    try:
-        asset_path = make_asset_path(dir, assets_dir)
-    except FileExistsError:
-        raise
 
-    logger.info(f'write html file {page_name}')
-    page, assets = get_page_with_saved_files(url, page, assets_dir)
-
-
-    download_assets(assets, asset_path)
-
+    logger.info(f'output path: {page_path}')
+    logger.info('start downloading page')
+    page_with_saved_files = get_page_with_saved_files(url, dir, page)
     with open(page_path, 'w') as file:
         logger.info('start writing final html file')
-        file.write(page)
+        file.write(page_with_saved_files)
 
     logger.info(f"Page was downloaded as \'{page_path}\'")
     return page_path
 
 
-def get_page_with_saved_files(url, page, assets_dir):
-    # logger.info('start saving local files')
-    # assets_dir = generate_name(url, ext='_files')
+def get_page_with_saved_files(url, dir, page):
+    logger.info('start saving local files')
+    files_folder_name = generate_name(url, ext='_files')
 
-    # try:
-    #     asset_path = make_asset_path(dir, assets_dir)
-    # except FileExistsError:
-    #     raise
+    try:
+        files_path = make_files_path(dir, files_folder_name)
+    except FileExistsError:
+        raise
 
     soup = BeautifulSoup(page.text, 'html.parser')
-    assets = get_assets(soup, url)
-    page = change_links_in_page(soup, assets_dir)
+    files = get_files_in_domain(soup, url)
+    download_local_files(files, files_folder_name, files_path)
 
-    return page, assets
-
-
-def change_links_in_page(tags, assets_dir):
-    for tag in tags:
-        if tag.has_attr('src'):
-            attr = 'src'
-        else:
-            attr = 'href'
-
-        tag_url = tag[attr]
-        file_relative_path = change_link(tag_url, assets_dir)
-        tag[attr] = file_relative_path
+    return soup.prettify()
 
 
-def change_link(file_url, assets_dir):
-    file_name = generate_name(file_url)
-    file_relative_path = generate_path(assets_dir, file_name)
-    return file_relative_path
-
-
-def get_assets(soup, url):
+def get_files_in_domain(soup, url):
     page_domain = get_domain(url)
 
     def get_files(tag):
@@ -119,7 +92,7 @@ def get_assets(soup, url):
     return tags
 
 
-def download_assets(tags, asset_path):
+def download_local_files(tags, files_folder_name, files_path):
     bar_width = len(tags)
     with IncrementalBar("Downloading:", max=bar_width) as bar:
         bar.suffix = "%(percent).1f%% (eta: %(eta)s)"
@@ -130,11 +103,13 @@ def download_assets(tags, asset_path):
                 attr = 'href'
 
             tag_url = tag[attr]
-            download_asset(tag_url, asset_path)
+            file_relative_path = download_file(
+                tag_url, files_folder_name, files_path)
+            tag[attr] = file_relative_path
             bar.next()
 
 
-def download_asset(file_url, asset_path):
+def download_file(file_url, files_folder_name, files_path):
     images_ext = ('.JPEG', '.GIF', '.PNG', '.SVG')
 
     try:
@@ -144,22 +119,24 @@ def download_asset(file_url, asset_path):
         raise
 
     file_name = generate_name(file_url)
-    file_absolute_path = generate_path(asset_path, file_name)
+    file_relative_path = generate_path(files_folder_name, file_name)
+    file_absolute_path = generate_path(files_path, file_name)
 
     if file_url.upper().endswith(images_ext):
         with open(file_absolute_path, 'wb') as f:
             f.write(file.content)
+        return file_relative_path
 
     else:
         with open(file_absolute_path, 'wb') as f:
             f.write(file.content)
+        return file_relative_path
 
 
-
-def make_asset_path(dir, assets_dir):
-    asset_path = generate_path(dir, assets_dir)
-    os.mkdir(asset_path)
-    return asset_path
+def make_files_path(dir, files_folder_name):
+    files_path = generate_path(dir, files_folder_name)
+    os.mkdir(files_path)
+    return files_path
 
 
 def normalize_page_url(url):
