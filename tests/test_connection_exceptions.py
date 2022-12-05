@@ -23,7 +23,7 @@ def test_exception__page_ConnectionError():
 def test_exception_file_ConnectionError():
     with requests_mock.Mocker() as m:
         m.get(url2, text=url2_mock)
-        m.get(url2_img_src, exc=Exception)
+        m.get(url2_img_src, exc=requests.exceptions.HTTPError)
         with tempfile.TemporaryDirectory() as temp_dir:
-            with pytest.raises(Exception):
+            with pytest.raises(requests.exceptions.HTTPError):
                 download(url2, temp_dir)
