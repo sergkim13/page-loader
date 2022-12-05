@@ -4,9 +4,12 @@ import sys
 import requests
 from page_loader import download
 from page_loader.args_parser import get_args
+from page_loader.logger import init_logger
 
 
-logger = logging.getLogger()
+# Создаем логгер
+init_logger(__name__)
+logger = logging.getLogger(__name__)
 
 
 def main():
