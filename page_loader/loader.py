@@ -136,8 +136,8 @@ def download_file(file_url, files_folder_name, files_path):
         return file_relative_path
 
     else:
-        with open(file_absolute_path, 'w') as f:
-            f.write(file.text)
+        with open(file_absolute_path, 'wb') as f:
+            f.write(file.content)
         return file_relative_path
 
 
