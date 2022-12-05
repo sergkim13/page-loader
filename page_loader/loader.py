@@ -6,7 +6,7 @@ from urllib.parse import urlparse, urlunparse
 import logging
 import logging.config
 from progress.bar import IncrementalBar
-from page_loader.logger import init_logger
+from logger import init_logger
 
 
 # Создаем логгер
