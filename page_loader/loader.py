@@ -40,7 +40,7 @@ def download(url, dir=os.getcwd()):
     try:
         page = requests.get(url)
         logger.info(f'requested url: {url}')
-    except requests.exceptions.ConnectionError:
+    except (requests.exceptions.RequestException, OSError):
         raise
 
     page_name = generate_name(url, ext='.html')
@@ -120,7 +120,7 @@ def download_file(file_url, files_folder_name, files_path):
 
     try:
         file = requests.get(file_url)
-    except requests.exceptions.ConnectionError:
+    except (requests.exceptions.RequestException, OSError):
         raise
 
     file_name = generate_name(file_url)
