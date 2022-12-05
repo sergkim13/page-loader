@@ -24,7 +24,7 @@ def main():
     except FileExistsError:
         logger.error('File is already exists.')
         sys.exit(72)
-    except (requests.exceptions.RequestException, OSError, requests.exceptions.HTTPError):
+    except (requests.exceptions.RequestException, OSError):
         logger.error('Failed to connect URL.')
         sys.exit(1)
 
