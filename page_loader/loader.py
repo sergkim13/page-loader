@@ -174,6 +174,8 @@ def get_domain(url):
 def generate_name(url, ext=''):
     if url_has_path(url):
         url, extension = os.path.splitext(url)
+        if not extension:
+            ext = '.html'
 
     if ext != '':
         extension = ext

@@ -1,7 +1,7 @@
 ru-hexlet-io-assets-logo-ru-495f05850e0095ea722a2b583565d492719579c02b0ce61d924e4f895fabf781.svg,
 ru-hexlet-io-assets-team-you-bc72575a0e6eb39de3e28e54a8df1138beaa57cd5300061ecb5c202773131f9e.jpg,
 ru-hexlet-io-assets-at-a-laptop-8c6e59267f91a6bf13bae0e5c0f7e1f36accc440b8d760bca08ab244e2b8bdbf.png,
-ru-hexlet-io-course,
+ru-hexlet-io-course.html,
 ru-hexlet-io-assets-hexlet-logo-wide-56fe12bf29287c1ac237ef1e5fa70e861e99a954af1f49504f654ae4990fa42b.png,
 ru-hexlet-io-assets-application-8dcc80087a1e4a2cb78752144707fc8b1bd5dede573dfe6174d69fcdf88eb50b.css,
 ru-hexlet-io-assets-sprockets-423c98b6a28c3fab45c96e660879310c4f39c8694f8c4763628f45148bb06d4d.js,
