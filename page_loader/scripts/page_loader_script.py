@@ -25,10 +25,10 @@ def main():
             f"Check permissions.")
         sys.exit(72)
     except FileExistsError:
-        logger.error('File is already exists.')
+        logger.error('File or directory is already exists.')
         sys.exit(72)
     except (requests.exceptions.RequestException, OSError):
-        logger.error('Failed to connect URL.')
+        logger.error('Downloading failed.')
         sys.exit(1)
 
 

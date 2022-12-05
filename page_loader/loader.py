@@ -22,13 +22,17 @@ def download(url, dir=os.getcwd()):
     2) Все символы, кроме букв и цифр, заменяются на дефис -.
     3) В конце ставится .html.
     '''
-    # if not os.path.exists(dir):
-    #     raise FileNotFoundError
-    # if not os.access(dir, os.W_OK):
-    #     raise PermissionError
 
     url = normalize_url(url)
-    page = requests.get(url)
+    try:
+        page = requests.get(url)
+        page.raise_for_status()
+    except (requests.exceptions.RequestException, OSError) as e:
+        cause_info = (e.__class__, e, e.__traceback__)
+        logger.debug(str(e), exc_info=cause_info)
+        logger.warning(f"Failed to connect to {url}")
+        raise
+
     logger.info(f'requested url: {url}')
     logger.info(f'output path: {os.path.abspath(dir)}')
 
@@ -48,6 +52,7 @@ def download(url, dir=os.getcwd()):
     with open(page_path, 'w') as file:
         logger.info('start writing html file')
         file.write(page_content)
+        logger.info('finisied writing html file')
 
     download_files(files, files_path)
     logger.info(f"Page was downloaded as \'{page_path}\'")
@@ -55,6 +60,9 @@ def download(url, dir=os.getcwd()):
 
 
 def download_files(files, files_path):
+    if not files:
+        return
+
     if not os.path.exists(files_path):
         logger.info(f'Creating directory for assets: {files_path}')
         os.mkdir(files_path)
@@ -65,18 +73,21 @@ def download_files(files, files_path):
     with IncrementalBar("Downloading:", max=bar_width) as bar:
         bar.suffix = "%(percent).1f%% (eta: %(eta)s)"
         for url, file_name in files:
-            download_file(url, file_name, files_path)
-            bar.next()
+            try:
+                download_file(url, file_name, files_path)
+                bar.next()
+            except (requests.exceptions.RequestException, OSError) as e:
+                cause_info = (e.__class__, e, e.__traceback__)
+                logger.debug(str(e), exc_info=cause_info)
+                logger.warning(
+                    f"Page resource {url} wasn't downloaded"
+                )
+                raise
 
 
 def download_file(url, file_name, files_path):
 
-    try:
-        file = requests.get(url)
-        file.raise_for_status()
-    except (requests.exceptions.RequestException, OSError):
-        raise
-
+    file = requests.get(url)
     file_absolute_path = generate_path(files_path, file_name)
     with open(file_absolute_path, 'wb') as f:
         f.write(file.content)
