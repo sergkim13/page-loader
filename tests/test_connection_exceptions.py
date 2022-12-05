@@ -12,7 +12,7 @@ url2_mock = '<img src="assets/mock.png"/>'
 url2_img_src = 'https://ya.ru/assets/mock.png'
 
 
-def test_exception__page_ConnectionError():
+def test_exception_page_ConnectionError():
     with requests_mock.Mocker() as m:
         m.get(url1, exc=requests.exceptions.ConnectionError)
         with tempfile.TemporaryDirectory() as temp_dir:

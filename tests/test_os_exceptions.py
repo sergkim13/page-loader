@@ -7,15 +7,17 @@ from page_loader import download
 
 # Тестовые данные
 url = 'https://yandex.ru'
-mock_text = 'mock_text'
+mock_text = '<img src="assets/mock.png"/>'
 expected_page_name = 'yandex-ru.html'
 expected_html_files_dir = 'yandex-ru_files'
 
 
 def test_download_to_not_exist_dir():
     not_exist_dir = 'not_exist_dir/'
-    with pytest.raises(FileNotFoundError):
-        download(url, not_exist_dir)
+    with requests_mock.Mocker() as m:
+        m.get(url, text=mock_text)
+        with pytest.raises(FileNotFoundError):
+            download(url, not_exist_dir)
 
 
 def test_download_permission():
