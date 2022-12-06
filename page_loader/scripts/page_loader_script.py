@@ -15,7 +15,8 @@ logger = logging.getLogger(__name__)
 def main():
     args = get_args()
     try:
-        print(download(args.URL, args.output))
+        page_path = download(args.URL, args.output)
+        print(f"Page was downloaded as '{page_path}'")
     except FileNotFoundError:
         logger.error(f'Directory \'{args.output}\' does not exist.')
         sys.exit(72)
