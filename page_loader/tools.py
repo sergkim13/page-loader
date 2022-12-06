@@ -9,8 +9,6 @@ def normalize_url(url, reference_url=''):
     else:
         reference_url = add_scheme(reference_url)
         url_parts = list(urlparse(url))
-        print(url_parts[0])
-        print(url_parts[1])
         url_netloc = url_parts[1]
         if not url_netloc:
             reference_url_parts = urlparse(reference_url)
