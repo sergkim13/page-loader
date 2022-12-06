@@ -28,31 +28,30 @@ def download(url, dir=os.getcwd()):
         page = requests.get(url)
         page.raise_for_status()
     except (requests.exceptions.RequestException, OSError) as e:
-        cause_info = (e.__class__, e, e.__traceback__)
-        logger.debug(str(e), exc_info=cause_info)
+        logger.debug(str(e))
         logger.warning(f"Failed to connect to {url}")
         raise
 
-    logger.info(f'requested url: {url}')
-    logger.info(f'output path: {os.path.abspath(dir)}')
+    logger.info(f'Requested url: {url}')
+    logger.info(f'Output path: {os.path.abspath(dir)}')
 
     page_name = generate_name(url, ext='.html')
     page_path = os.path.abspath(generate_path(dir, page_name))
-    logger.info(f'output page path: {page_path}')
+    logger.info(f'Output page path: {page_path}')
 
     if os.path.exists(page_path):
         raise FileExistsError
 
     files_dir = generate_name(url, ext='_files')
     files_path = generate_path(dir, files_dir)
-    logger.info(f'output files directory path: {files_path}')
+    logger.info(f'Output files directory path: {files_path}')
 
     page_content, files = parse_html(url, files_dir, page)
 
     with open(page_path, 'w') as file:
-        logger.info('start writing html file')
+        logger.info('Start writing html file')
         file.write(page_content)
-        logger.info('finisied writing html file')
+        logger.info('Finished writing html file')
 
     download_files(files, files_path)
     logger.info(f"Page was downloaded as \'{page_path}\'")
@@ -77,8 +76,7 @@ def download_files(files, files_path):
                 download_file(url, file_name, files_path)
                 bar.next()
             except (requests.exceptions.RequestException, OSError) as e:
-                cause_info = (e.__class__, e, e.__traceback__)
-                logger.debug(str(e), exc_info=cause_info)
+                logger.debug(str(e))
                 logger.warning(
                     f"Page resource {url} wasn't downloaded"
                 )

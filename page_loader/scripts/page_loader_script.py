@@ -15,9 +15,9 @@ logger = logging.getLogger(__name__)
 def main():
     args = get_args()
     try:
-        print(download(args.URL, args.output))
+        download(args.URL, args.output)
     except FileNotFoundError:
-        logger.error(f'Directory \'{args.output}\' does not exist. ')
+        logger.error(f'Directory \'{args.output}\' does not exist.')
         sys.exit(72)
     except PermissionError:
         logger.error(
@@ -28,7 +28,7 @@ def main():
         logger.error('File or directory is already exists.')
         sys.exit(72)
     except (requests.exceptions.RequestException, OSError):
-        logger.error('Downloading failed.')
+        logger.error(f'Failed to download {args.URL}.')
         sys.exit(1)
 
 
