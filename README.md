@@ -15,8 +15,6 @@ MacOS / Linux
 1. Clone repository: `https://github.com/sergkim13/python-project-51.git`
 2. Type: `make package-install`
 
-### Manual:
-
 ______________
 
 #### Demo:
