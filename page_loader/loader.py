@@ -31,10 +31,9 @@ def download(url, dir=os.getcwd()):
         logger.debug(str(e))
         logger.warning(f"Failed to connect to {url}")
         raise
-
+    
     logger.info(f'Requested url: {url}')
     logger.info(f'Output path: {os.path.abspath(dir)}')
-
     page_name = generate_name(url, ext='.html')
     page_path = os.path.abspath(generate_path(dir, page_name))
     logger.info(f'Output page path: {page_path}')
@@ -45,7 +44,6 @@ def download(url, dir=os.getcwd()):
     files_dir = generate_name(url, ext='_files')
     files_path = generate_path(dir, files_dir)
     logger.info(f'Output files directory path: {files_path}')
-
     page_content, files = parse_html(url, files_dir, page)
 
     with open(page_path, 'w') as file:
@@ -54,7 +52,7 @@ def download(url, dir=os.getcwd()):
         logger.info('Finished writing html file')
 
     download_files(files, files_path)
-    logger.info(f"Page was downloaded as {page_path}")
+    logger.info(f"Page was downloaded succesfully.")
     return page_path
 
 

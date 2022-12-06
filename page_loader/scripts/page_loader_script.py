@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 def main():
     args = get_args()
     try:
-        download(args.URL, args.output)
+        print(download(args.URL, args.output))
     except FileNotFoundError:
         logger.error(f'Directory \'{args.output}\' does not exist.')
         sys.exit(72)
