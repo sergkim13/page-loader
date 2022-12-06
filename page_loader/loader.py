@@ -54,7 +54,7 @@ def download(url, dir=os.getcwd()):
         logger.info('Finished writing html file')
 
     download_files(files, files_path)
-    logger.info(f"Page was downloaded as \'{page_path}\'")
+    logger.info(f"Page was downloaded as '{page_path}'")
     return page_path
 
 
