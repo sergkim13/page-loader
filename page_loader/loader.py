@@ -60,7 +60,7 @@ def download_files(files, files_path):
         return
 
     if not os.path.exists(files_path):
-        logger.info(f'Creating directory for assets: {files_path}')
+        logger.info(f'Creating directory for files: {files_path}')
         os.mkdir(files_path)
     else:
         raise FileExistsError
